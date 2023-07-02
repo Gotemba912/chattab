@@ -1,0 +1,99 @@
+{
+  "namespace": "command_block",
+
+  "tab_button_panel": {
+    "type": "panel",
+    "size": [ 35, 20 ],
+    "$is_up|default": true,
+    "$buttontext|default": "Tab",
+    "controls": [
+      {
+        "arrow_up@chat.editup": {
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "offset": [ 3, 0 ],
+          "ignored": "(not $is_up)"
+        }
+      },
+      {
+        "arrow_down@chat.editdown": {
+          "anchor_from": "left_middle",
+          "anchor_to": "left_middle",
+          "offset": [ 3, 0 ],
+          "ignored": "$is_up"
+        }
+      },
+      {
+        "text": {
+          "type": "label",
+          "text": "$buttontext",
+          "color": "$text_color",
+          "anchor_from": "right_middle",
+          "anchor_to": "right_middle",
+          "text_alignment": "right",
+          "offset": [ -3, 0 ]
+        }
+      }
+    ]
+  },
+  
+  "chat_autocompleteback_button@common_buttons.light_content_button": {
+    "$pressed_button_name": "button.chat_autocomplete_back",
+    "$button_content": "command_block.tab_button_panel",
+    "$buttontext": "Tab",
+    "$is_up": true
+  },
+
+  "chat_autocomplete_button@common_buttons.light_content_button": {
+    "$pressed_button_name": "button.chat_autocomplete",
+    "$button_content": "command_block.tab_button_panel",
+    "$buttontext": "Tab",
+    "$is_up": false
+  },
+
+  "command_block_screen_content": {
+    "modifications": [
+      {
+        "array_name": "controls",
+        "operation": "insert_front",
+        "value": [
+          {
+            "cmd_autocomplete": {
+              "type": "stack_panel",
+              "orientation": "horizontal",
+              "size": [ 76, 16 ],
+              "offset": [ "-10%", 4 ],
+              "anchor_from": "top_right",
+              "anchor_to": "top_right",
+              "layer": 18,
+              "controls": [
+                {
+                  "chat_autocompleteback_button@command_block.chat_autocompleteback_button": {
+                    "size": [ 35, 16 ]
+                  }
+                },
+                {
+                  "padding": {
+                    "type": "panel",
+                    "size": [ 3, 0 ]
+                  }
+                },
+                {
+                  "chat_autocomplete_button@command_block.chat_autocomplete_button": {
+                    "size": [ 35, 16 ]
+                  }
+                }
+              ],
+              "bindings": [
+                {
+                  "binding_name": "#maximized_input_visible",
+                  "binding_name_override": "#visible"
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  }
+}
